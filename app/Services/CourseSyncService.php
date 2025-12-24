@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Services;
 
 //use App\DTOs\LearnProgramDTO;
+use App\Data\CourseData;
 use App\Models\Course;
 use Illuminate\Support\Facades\Http;
 
 final class CourseSyncService
 {
-    public function syncFromApi(): int
+    public function syncFromApi(): void
     {
         $response = Http::withOptions(['verify' => false])
             ->get('https://edu.rosmintrud.ru/api/Reference/GetLearnProgram', [
@@ -22,18 +23,14 @@ final class CourseSyncService
         }
 
         $data = $response->json();
-/*
-        $count = 0;
-        foreach ($data as $item) {
-            $dto = LearnProgramDTO::fromArray($item);
-            LearnProgram::updateOrCreate(
-                ['external_id' => $dto->id],
-                $dto->toArray()
-            );
-            $count++;
-        }
+        $courses = $data['learnPrograms'];
 
-        return $count;*/
-        return  3;
+        foreach ($courses as $course) {
+            $courseData = CourseData::fromArray($course);
+            Course::updateOrCreate(
+                ['id' => $courseData->id],
+                $courseData->toArray()
+            );
+        }
     }
 }
