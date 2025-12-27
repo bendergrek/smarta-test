@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('course_groups', function (Blueprint $table) {
+            $table->comment('Группы курсов пользователя');
+
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('name')->comment('Название группы');
+
             $table->timestamps();
         });
     }

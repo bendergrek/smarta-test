@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         @include('partials.head')
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
@@ -13,21 +14,13 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+                    <flux:navlist.item icon="home" :href="route('courses')" :current="request()->routeIs('courses')" wire:navigate>Курсы</flux:navlist.item>
+                    <flux:navlist.item icon="bookmark" :href="route('user.courses')" :current="request()->routeIs('user.courses')" wire:navigate>Мои курсы</flux:navlist.item>
+                    <flux:navlist.item icon="rectangle-group" :href="route('course-groups')" :current="request()->routeIs('course-groups')" wire:navigate>Группы курсов</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
-
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
 
             <!-- Desktop User Menu -->
             <flux:dropdown class="hidden lg:block" position="bottom" align="start">
