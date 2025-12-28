@@ -35,3 +35,5 @@ composer install
 ```
 Автоматом будет создано два пользователя:
 `admin@example.com` и `test@example.com` пароль у обоих `password`
+
+Ресурс будет доступен по адресу `http://localhost`
