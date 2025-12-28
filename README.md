@@ -1,21 +1,20 @@
+Для запуска необходимо чтобы локально были установлены git, docker, composer.
 Клонируем репозиторий
 ```
 git clone https://github.com/bendergrek/smarta-test ./test
 ```
 
 Все дальнейшие команды необходимо выполнять в директории `test`
+```
+cd ./test
+```
 
 Устанавливаем зависимости
 ```
 composer install
 ```
 
-Запускаем сборку образов
-```
-./vendor/bin/sail install
-```
-
-Стартуем образ
+Запускаем сборку и старт образа
 ```
 ./vendor/bin/sail up -d
 ```

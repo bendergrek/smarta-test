@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('course-groups', GetCourseGroupsController::class)
         ->name('course-groups');
 
-    Route::get('course-groups/{group}', ViewCourseGroupController::class)
+    Route::get('course-groups/view/{group}', ViewCourseGroupController::class)
         ->name('course-groups.view');
 
     Route::get('course-groups/create', CreateCourseGroupController::class)
